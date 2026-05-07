@@ -6,9 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -20,25 +19,21 @@ import org.w3c.dom.Element;
 public class ReportGenerator {
 
     public static void main(String[] args) {
-        //Выбор XML
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Select the input xml file");
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int result = fileChooser.showOpenDialog(null);
+        
+        System.out.print("Enter the input .xml file: ");
+        Scanner scanner = new Scanner(System.in);
+        String inputFileName = scanner.nextLine().trim();
 
-        if (result != JFileChooser.APPROVE_OPTION) {
-            JOptionPane.showMessageDialog(null, "Cancel");
+        if (!inputFileName.toLowerCase().endsWith(".xml")) {
+            System.err.println("Invalid format");
             return;
         }
+        
+        String workingDirectory = System.getProperty("user.dir");
+        File inputFile = new File(workingDirectory, inputFileName);
 
-        File inputFile = fileChooser.getSelectedFile();
-
-        String fileName = inputFile.getName();
-        if (!fileName.toLowerCase().endsWith(".xml")) {
-            JOptionPane.showMessageDialog(null,
-                    "Select a file in .xml format",
-                    "Invalid format",
-                    JOptionPane.ERROR_MESSAGE);
+        if (!inputFile.exists()) {
+            System.err.println("File not found in working directory");
             return;
         }
         
@@ -135,7 +130,8 @@ public class ReportGenerator {
             }
             
             xml.append("</report>");
-            Files.writeString(Path.of("report.xml"), xml.toString());
+            Path outputPath = new File(workingDirectory, "report.xml").toPath();
+            Files.writeString(outputPath, xml.toString());
 
         
         } catch (Exception e) {
