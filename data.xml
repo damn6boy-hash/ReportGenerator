@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+    <departments>
+        <department key="1" name="Разработка" label="DEV"/>
+        <department key="2" name="Аналитика" label="ANL"/>
+    </departments>
+    <users>
+        <user key="1" name="Алексеев Д.А." login="alexeev_da" password="dev_pass_1" key_department="1"/>
+        <user key="2" name="Борисов С.В." login="borisov_sv" password="dev_pass_2" key_department="1"/>
+        <user key="3" name="Виноградова Е.Н." login="vinogradova_en" password="anl_pass_1" key_department="2"/>
+        <user key="4" name="Дмитриев К.М." login="dmitriev_km" password="anl_pass_2" key_department="2"/>
+    </users>
+    <sessions>
+        <session key="1" key_user="1" date_logon="2026-04-20 09:00:00" date_logoff="2026-04-20 18:05:00"/>
+        <session key="2" key_user="2" date_logon="2026-04-20 10:15:00" date_logoff="2026-04-20 19:00:00"/>
+        <session key="3" key_user="3" date_logon="2026-04-21 08:50:00" date_logoff="2026-04-21 17:30:00"/>
+        <session key="4" key_user="4" date_logon="2026-04-21 11:00:00" date_logoff="2026-04-21 14:20:00"/>
+    </sessions>
+</data>
